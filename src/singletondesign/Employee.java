@@ -1,6 +1,8 @@
 package singletondesign;
 
-public class Employee {
+import java.io.Serializable;
+
+public class Employee implements Serializable {
 
     private static volatile Employee INSTANCE=null;
     private Employee(){
@@ -22,10 +24,17 @@ public class Employee {
 
     }
 
-    /*Way to break singleton design pattern
-    * 1) Reflection API.
-    * 2) Serialization and deserialization.
-    *
-    *
-    * */
+    // need to check readResolve method.
+    public Object readResolve(){
+        return INSTANCE;
+    }
+
 }
+
+
+/*Way to break singleton design pattern
+ * 1) Reflection API.
+ * 2) Serialization and deserialization.
+ * 3)cloning
+ *
+ * */
