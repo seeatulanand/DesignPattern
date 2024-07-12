@@ -2,7 +2,7 @@ package singletondesign;
 
 import java.io.Serializable;
 
-public class Employee implements Serializable {
+public class Employee implements Serializable,Cloneable{
 
     private static volatile Employee INSTANCE=null;
     private Employee(){
@@ -27,6 +27,10 @@ public class Employee implements Serializable {
     // need to check readResolve method.
     public Object readResolve(){
         return INSTANCE;
+    }
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
+        // also  you can git return  INSTANCE;
     }
 
 }
